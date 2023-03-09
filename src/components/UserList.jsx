@@ -8,7 +8,10 @@ const UserListWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  gap: 10px;
+  gap: 6%;
+  width: 100%;
+  height: 100%;
+  //background-color: red;
 `;
 
 
@@ -16,9 +19,9 @@ const UserListWrapper = styled.div`
 let userId = 0;
 
 const usersInitValue = [
-    {src: man_empty, width: '1rem', id: userId++},
-    {src: man_empty, width: '1.2rem', id: userId++},
-    {src: man_empty, width: '1.4rem', id: userId++},
+    {src: man_empty, width: '10%', id: userId++},
+    {src: man_empty, width: '15%', id: userId++},
+    {src: man_empty, width: '20%', id: userId++},
 ];
 
 
@@ -50,7 +53,7 @@ const UserList = () => {
                         <User
                             width={width} src={src} key={id}
                             onMouseEnter={() => handleMouseEnter(index)}
-                            onMouseLeave={() => handleMouseLeave()}
+                            onMouseLeave={handleMouseLeave}
                         />
                     )
                 })

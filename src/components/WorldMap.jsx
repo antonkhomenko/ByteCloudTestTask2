@@ -2,25 +2,26 @@ import styled from "styled-components";
 import UserList from "./UserList.jsx";
 
 const MapWrapper = styled.div`
-  min-width: 375px;
-  width: min-content;
-  //border: 5px solid red;
-  margin: 5% auto;
+  min-width: 350px;
+  max-width: 1200px;
+  //width: min-content;
+  margin: 0 auto;
   position: relative;
+  border: 5px solid green;
 `;
 
 const MapImg = styled.img`
   display: block;
-  max-width: 1200px;
+  width: 100%;
 `;
 
 const LocationBlock = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 150px;
-  height: 120px;
-  border: 3px solid blue;
+  width: 13%;
+  height: 15%;
+  //border: 3px solid blue;
   position: absolute;
   top: ${props => props.top};
   left: ${props => props.left};
@@ -45,9 +46,9 @@ const WorldMap = () => {
 const coordinate = [
     {top: '35%', left: '15%', name: "NorthAmerica"},
     {top: '64%', left: '26%', name: 'SouthAmerica'},
-    {top: '31%', left: '47%', name: 'Europe'},
-    {top: '44%', left: '68%', name: 'Asia'},
-    {top: '71%', left: '77%', name: 'Australia'},
+    {top: '30%', left: '47%', name: 'Europe'},
+    {top: '42%', left: '68%', name: 'Asia'},
+    {top: '70%', left: '76%', name: 'Australia'},
 ];
 
 export default WorldMap;
