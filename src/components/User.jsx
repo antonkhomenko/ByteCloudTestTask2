@@ -7,11 +7,15 @@ const UserImg = styled.img`
   cursor: pointer;
 `;
 
-const User = ({width, src, onMouseEnter, onMouseLeave}) => {
+const User = ({width, src, onMouseEnter, onMouseLeave, onClick}) => {
 
 
     return (
-        <UserImg src={src} alt={'man-empty-img'} width={width} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}/>
+        <UserImg
+            src={src} alt={'man-empty-img'} width={width}
+            onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}
+            onClick={onClick}
+        />
     );
 };
 

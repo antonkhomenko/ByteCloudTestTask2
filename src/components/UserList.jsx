@@ -1,8 +1,9 @@
-import React, {useId, useRef, useState} from 'react';
+import React, {useContext, useState} from 'react';
 import User from "./User.jsx";
 import styled from "styled-components";
 import man_empty from '/src/assets/man_empty.png';
 import man_filled from '/src/assets/man_filled.png';
+import {CountriesDispatchContext} from "../contexts/CountriesContext.jsx";
 
 const UserListWrapper = styled.div`
   display: flex;
@@ -25,9 +26,10 @@ const usersInitValue = [
 ];
 
 
-const UserList = () => {
+const UserList = ({onClick, handleAmount}) => {
 
     const [users, setUsers] = useState(usersInitValue);
+    const dispatch = useContext(CountriesDispatchContext);
 
     const handleMouseEnter = (targetIndex) => {
         const hoverUsers = users.map((item, index) => {
@@ -44,6 +46,7 @@ const UserList = () => {
     }
 
 
+
     return (
         <UserListWrapper>
             {
@@ -54,6 +57,7 @@ const UserList = () => {
                             width={width} src={src} key={id}
                             onMouseEnter={() => handleMouseEnter(index)}
                             onMouseLeave={handleMouseLeave}
+                            onClick={onClick}
                         />
                     )
                 })
