@@ -1,8 +1,9 @@
 import styled from "styled-components";
 import UserList from "./UserList.jsx";
 import Devices from "./Devices.jsx";
-import {useContext, useState} from "react";
+import React, {useContext, useState} from "react";
 import {CountriesContext, CountriesDispatchContext} from "../contexts/CountriesContext.jsx";
+import ClickAnimation from "./ClickAnimation.jsx";
 
 const MapWrapper = styled.div`
   min-width: 350px;
@@ -35,15 +36,26 @@ const WorldMap = () => {
 
     const countries = useContext(CountriesContext);
     const countriesDispatch = useContext(CountriesDispatchContext);
+    const [clickAnimation, setClickAnimation] = useState({show: false, top: '0px', left: '0px'});
 
 
     const [usersAmount, setUserAmount] = useState(0);
 
-    const handleClick = (targetIndex) => {
+    const handleClick = (targetIndex, event) => {
         countriesDispatch({
             type: 'showDevices',
             id: targetIndex,
         });
+
+        setClickAnimation({
+            show: true,
+            top: event.pageY,
+            left: event.pageX,
+        });
+
+        setTimeout(() => {
+               setClickAnimation({})
+        }, 200)
     }
 
     const handleUserAmount = (value) => {
@@ -52,28 +64,20 @@ const WorldMap = () => {
 
 
     return (
-        <MapWrapper>
+        <>
+            <ClickAnimation {...clickAnimation}/>
+            <MapWrapper>
             <MapImg src={'/src/assets/map.png'} alt={'map-img'}/>
             {
                 countries.map((item, index) => {
                     return (
                         <LocationBlock key={item.name} top={item.top} left={item.left}>
-                            {item.showDevices ? <Devices/> : <UserList onClick={() => handleClick(index)}/>}
+                            {item.showDevices ? <Devices/> : <UserList onClick={(event) => handleClick(index, event)}/>}
                         </LocationBlock>
                     )
                 })
             }
-
-            {/*{*/}
-            {/*    counties.map((item, index) => {*/}
-            {/*        return (*/}
-            {/*            <LocationBlock key={item.name} top={item.top} left={item.left}>*/}
-            {/*                {item.showDevice ? <Devices usersAmount={usersAmount}/> : <UserList onClick={() => handleClick(index)} handleAmount={handleUserAmount}/>}*/}
-            {/*            </LocationBlock>*/}
-            {/*        )*/}
-            {/*    })*/}
-            {/*}*/}
-        </MapWrapper>
+        </MapWrapper></>
     );
 };
 

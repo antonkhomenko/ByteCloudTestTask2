@@ -4,6 +4,7 @@ import styled from "styled-components";
 import man_empty from '/src/assets/man_empty.png';
 import man_filled from '/src/assets/man_filled.png';
 import {CountriesDispatchContext} from "../contexts/CountriesContext.jsx";
+import ClickAnimation from "./ClickAnimation.jsx";
 
 const UserListWrapper = styled.div`
   display: flex;
@@ -26,10 +27,12 @@ const usersInitValue = [
 ];
 
 
+
+
 const UserList = ({onClick, handleAmount}) => {
 
     const [users, setUsers] = useState(usersInitValue);
-    const dispatch = useContext(CountriesDispatchContext);
+
 
     const handleMouseEnter = (targetIndex) => {
         const hoverUsers = users.map((item, index) => {
