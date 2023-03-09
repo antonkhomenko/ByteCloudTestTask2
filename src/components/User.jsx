@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useId} from 'react';
 import styled from "styled-components";
 
 const UserImg = styled.img`
@@ -7,9 +7,11 @@ const UserImg = styled.img`
   cursor: pointer;
 `;
 
-const User = (props) => {
+const User = ({width, src, onMouseEnter, onMouseLeave}) => {
+
+
     return (
-        <UserImg src={'/src/assets/man_empty.png'} alt={'man-empty-img'} {...props}/>
+        <UserImg src={src} alt={'man-empty-img'} width={width} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}/>
     );
 };
 

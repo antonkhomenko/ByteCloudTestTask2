@@ -43,9 +43,9 @@ const WorldMap = () => {
 };
 
 const coordinate = [
-    {top: '35%', left: '14%', name: "NorthAmerica"},
+    {top: '35%', left: '15%', name: "NorthAmerica"},
     {top: '64%', left: '26%', name: 'SouthAmerica'},
-    {top: '32%', left: '46%', name: 'Europe'},
+    {top: '31%', left: '47%', name: 'Europe'},
     {top: '44%', left: '68%', name: 'Asia'},
     {top: '71%', left: '77%', name: 'Australia'},
 ];
