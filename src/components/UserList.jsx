@@ -4,7 +4,7 @@ import styled from "styled-components";
 import man_empty from '/src/assets/man_empty.png';
 import man_filled from '/src/assets/man_filled.png';
 import {CountriesDispatchContext} from "../contexts/CountriesContext.jsx";
-import ClickAnimation from "./ClickAnimation.jsx";
+
 
 const UserListWrapper = styled.div`
   display: flex;
@@ -13,7 +13,6 @@ const UserListWrapper = styled.div`
   gap: 6%;
   width: 100%;
   height: 100%;
-  //background-color: red;
 `;
 
 
