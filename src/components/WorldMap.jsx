@@ -39,7 +39,6 @@ const WorldMap = () => {
     const [clickAnimation, setClickAnimation] = useState({show: false, top: '0px', left: '0px'});
 
 
-    const [usersAmount, setUserAmount] = useState(0);
 
     const handleClick = (targetIndex, event) => {
         countriesDispatch({
@@ -60,9 +59,6 @@ const WorldMap = () => {
         return targetIndex;
     }
 
-    const handleUserAmount = (value) => {
-        setUserAmount(value);
-    }
 
 
     return (
