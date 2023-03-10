@@ -32,6 +32,7 @@ const usersInitValue = [
 const UserList = ({onClick, handleAmount}) => {
 
     const [users, setUsers] = useState(usersInitValue);
+    const dispatch = useContext(CountriesDispatchContext);
 
 
     const handleMouseEnter = (targetIndex) => {
@@ -50,6 +51,16 @@ const UserList = ({onClick, handleAmount}) => {
 
 
 
+    const handleClick = (targetId, event) => {
+        const id = onClick(event);
+        dispatch({
+            type: 'setDevicesAmount',
+            id: id,
+            amount: targetId + 1,
+        });
+    }
+
+
     return (
         <UserListWrapper>
             {
@@ -60,7 +71,7 @@ const UserList = ({onClick, handleAmount}) => {
                             width={width} src={src} key={id}
                             onMouseEnter={() => handleMouseEnter(index)}
                             onMouseLeave={handleMouseLeave}
-                            onClick={onClick}
+                            onClick={(event) => handleClick(index, event)}
                         />
                     )
                 })

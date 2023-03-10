@@ -26,6 +26,14 @@ const countriesReducer = (countries, action) => {
                 return item;
             });
         }
+        case "setDevicesAmount": {
+            return countries.map((item, index) => {
+                if(index === action.id) {
+                    return {...item, selectedUsers: action.amount};
+                }
+                return item;
+            })
+        }
     }
 }
 

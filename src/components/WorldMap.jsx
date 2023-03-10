@@ -55,7 +55,9 @@ const WorldMap = () => {
 
         setTimeout(() => {
                setClickAnimation({})
-        }, 200)
+        }, 200);
+
+        return targetIndex;
     }
 
     const handleUserAmount = (value) => {
@@ -72,7 +74,7 @@ const WorldMap = () => {
                 countries.map((item, index) => {
                     return (
                         <LocationBlock key={item.name} top={item.top} left={item.left}>
-                            {item.showDevices ? <Devices/> : <UserList onClick={(event) => handleClick(index, event)}/>}
+                            {item.showDevices ? <Devices locationId={index}/> : <UserList onClick={(event) => handleClick(index, event)}/>}
                         </LocationBlock>
                     )
                 })

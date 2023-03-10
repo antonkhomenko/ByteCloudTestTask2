@@ -1,9 +1,15 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import {CountriesContext} from "../contexts/CountriesContext.jsx";
 
-const Devices = ({usersAmount}) => {
+const Devices = ({locationId}) => {
+
+    const countries = useContext(CountriesContext);
+    const devicesAmount = countries[locationId].selectedUsers;
+
+
     return (
         <div>
-            devices {usersAmount}
+            devices {devicesAmount}
         </div>
     );
 };
