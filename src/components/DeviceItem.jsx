@@ -26,11 +26,11 @@ const DeviceMask = styled.div`
 `;
 
 
-const DeviceItem = ({src, ...props}) => {
+const DeviceItem = (props) => {
     return (
        <DeviceWrapper>
-           <DeviceMask {...props}/>
-           <DeviceImg src={src} alt={`${src}-img`}/>
+           <DeviceMask {...props.props}/>
+           <DeviceImg src={props.src} alt={`${props.name}-img`}/>
        </DeviceWrapper>
     );
 };

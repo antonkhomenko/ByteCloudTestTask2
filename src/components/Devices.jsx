@@ -17,16 +17,13 @@ const Wrapper = styled.div`
 `;
 
 
-let devicesListId= 0;
-
 const devicesList = [
-    {src: small, props: {width: 80, height: 48, top: 22, left: 10}, id: devicesListId++},
-    {src: medium, props: {width: 52, height: 72, top: 14, left: 24}, id: devicesListId++},
-    {src: large, props: {width: 37, height: 23, top: 28, left: 33, br: '3px'}, id: devicesListId++},
+    {src: small, props: {width: 80, height: 48, top: 22, left: 10}, name: 'small'},
+    {src: medium, props: {width: 52, height: 72, top: 14, left: 24}, name: 'medium'},
+    {src: large, props: {width: 37, height: 23, top: 28, left: 33, br: '3px'}, name: 'large'},
 ];
 
 const Devices = ({locationId}) => {
-
 
     const countries = useContext(CountriesContext);
     const devicesAmount = countries[locationId].selectedUsers;
@@ -37,8 +34,7 @@ const Devices = ({locationId}) => {
         <Wrapper>
             {
               filteredDevicesList.map(item => {
-                  const props = item.props;
-                  return <DeviceItem src={item.src} {...props} key={item.id}/>
+                  return <DeviceItem {...item} key={item.name}/>
               })
             }
         </Wrapper>
