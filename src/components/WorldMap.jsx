@@ -27,7 +27,7 @@ const LocationBlock = styled.div`
   //height: 15%;
   width: ${props => props.width || '13%'};
   height: ${props => props.height || '15%'};
-  border: 3px solid blue;
+  //border: 3px solid blue;
   position: absolute;
   top: ${props => props.top};
   left: ${props => props.left};

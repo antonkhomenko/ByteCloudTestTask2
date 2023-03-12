@@ -1,5 +1,5 @@
 
-export const getDeviceWrapperStyle = (locationId, itemName) => {
+export const getDeviceWrapperStyle = (locationId, itemName, deviceAmount) => {
 
     let styledObj = {};
 
@@ -17,7 +17,7 @@ export const getDeviceWrapperStyle = (locationId, itemName) => {
             else if(itemName === 'small') {
                 styledObj.order = '2';
                 styledObj.alignSelf = 'flex-end';
-                styledObj.margin = '0 15% 0 0';
+                styledObj.margin = deviceAmount < 3 ? '25% 25% 0 0' : '0 15% 0 0';
             }
             else {
                 styledObj.order = '1';
@@ -29,7 +29,7 @@ export const getDeviceWrapperStyle = (locationId, itemName) => {
             if(itemName === "small") {
                 styledObj.order = '2';
                 styledObj.alignItems = 'center';
-                styledObj.margin = '10% 0 0 0';
+                styledObj.margin = deviceAmount < 3 ? '10% 35% 0 0' : '10% 0 0 15%';
             }
             else if(itemName === 'medium') {
                 styledObj.order = '1';
@@ -46,7 +46,7 @@ export const getDeviceWrapperStyle = (locationId, itemName) => {
             if(itemName === 'small') {
                 styledObj.order = '2';
                 styledObj.alignItems = 'center';
-                styledObj.margin =  '15% 0 0 30%';
+                styledObj.margin = deviceAmount < 3 ? '0 25% 0 0' : '15% 0 0 30%';
             }
             else if(itemName === 'medium') {
                 styledObj.order = '1';

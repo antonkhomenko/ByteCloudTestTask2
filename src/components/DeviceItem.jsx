@@ -34,7 +34,8 @@ const DeviceMask = styled.div`
 
 const DeviceItem = (props) => {
 
-    const deviceWrapperStyle = getDeviceWrapperStyle(props.locationId, props.name);
+    const deviceWrapperStyle = getDeviceWrapperStyle(props.locationId, props.name, props.deviceAmount);
+
 
     return (
        <DeviceWrapper {...deviceWrapperStyle}>

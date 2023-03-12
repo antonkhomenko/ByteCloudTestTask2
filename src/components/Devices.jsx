@@ -37,7 +37,7 @@ const Devices = ({locationId}) => {
         <Wrapper {...deviceWrapper}>
             {
               filteredDevicesList.map(item => {
-                  return <DeviceItem {...item}  wrapper={deviceWrapper} locationId={locationId} key={item.name}/>
+                  return <DeviceItem {...item}  wrapper={deviceWrapper} locationId={locationId} deviceAmount={devicesAmount} key={item.name}/>
               })
             }
         </Wrapper>
