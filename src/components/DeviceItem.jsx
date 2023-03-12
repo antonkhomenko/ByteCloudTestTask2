@@ -16,6 +16,7 @@ const DeviceWrapper = styled.div`
   display: flex;
   align-items: ${props => props.alignItems || 'center'};
   align-self: ${props => props.alignSelf || 'center'};
+  margin: ${props => props.margin || '0 0 0 0'};
   position: relative;
   order: ${props => props.order || '0'}
 `;

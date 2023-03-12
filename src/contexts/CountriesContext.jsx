@@ -1,4 +1,5 @@
 import {createContext, useReducer} from "react";
+import {getLocationStyle} from "../helpers/getLocationStyle.js";
 
 export const CountriesContext = createContext(null);
 export const CountriesDispatchContext = createContext(null);
@@ -21,7 +22,8 @@ const countriesReducer = (countries, action) => {
         case "showDevices": {
             return countries.map((item, index) => {
                 if(index === action.id) {
-                    return {...item, showDevices: true}
+                    const newItem = getLocationStyle(index);
+                    return {...newItem, showDevices: true}
                 }
                 return item;
             });

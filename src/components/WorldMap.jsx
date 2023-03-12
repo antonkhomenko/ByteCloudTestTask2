@@ -23,8 +23,10 @@ const LocationBlock = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 13%;
-  height: 15%;
+  //width: 13%;
+  //height: 15%;
+  width: ${props => props.width || '13%'};
+  height: ${props => props.height || '15%'};
   border: 3px solid blue;
   position: absolute;
   top: ${props => props.top};
@@ -69,7 +71,7 @@ const WorldMap = () => {
             {
                 countries.map((item, index) => {
                     return (
-                        <LocationBlock key={item.name} top={item.top} left={item.left}>
+                        <LocationBlock key={item.name} {...item}>
                             {item.showDevices ? <Devices locationId={index}/> : <UserList onClick={(event) => handleClick(index, event)}/>}
                         </LocationBlock>
                     )

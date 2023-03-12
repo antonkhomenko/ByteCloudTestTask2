@@ -17,9 +17,11 @@ export const getDeviceWrapperStyle = (locationId, itemName) => {
             else if(itemName === 'small') {
                 styledObj.order = '2';
                 styledObj.alignSelf = 'flex-end';
+                styledObj.margin = '0 15% 0 0';
             }
             else {
                 styledObj.order = '1';
+                styledObj.margin = '0 45% 0 0';
             }
             break;
         }
@@ -27,6 +29,7 @@ export const getDeviceWrapperStyle = (locationId, itemName) => {
             if(itemName === "small") {
                 styledObj.order = '2';
                 styledObj.alignItems = 'center';
+                styledObj.margin = '10% 0 0 0';
             }
             else if(itemName === 'medium') {
                 styledObj.order = '1';
@@ -35,6 +38,7 @@ export const getDeviceWrapperStyle = (locationId, itemName) => {
             else {
                 styledObj.order = '3';
                 styledObj.alignItems = 'flex-start';
+                styledObj.margin = '15% 0 0 0';
             }
             break;
         }
@@ -42,6 +46,7 @@ export const getDeviceWrapperStyle = (locationId, itemName) => {
             if(itemName === 'small') {
                 styledObj.order = '2';
                 styledObj.alignItems = 'center';
+                styledObj.margin =  '15% 0 0 30%';
             }
             else if(itemName === 'medium') {
                 styledObj.order = '1';
