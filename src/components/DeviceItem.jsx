@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from "styled-components";
 import {getDeviceWrapperStyle} from "../helpers/getDeviceWrapperStyle.js";
-
+import mm from '/src/assets/medium_mask.png';
 
 const DeviceImg = styled.img`
     max-width: 40px;
@@ -12,9 +12,9 @@ const DeviceImg = styled.img`
 
 const DeviceWrapper = styled.div`
   max-width: 33%;
-  height: 100%;
+  //height: 100%;
   display: flex;
-  align-items: ${props => props.alignItems || 'center'};
+  //align-items: ${props => props.alignItems || 'center'};
   align-self: ${props => props.alignSelf || 'center'};
   margin: ${props => props.margin || '0 0 0 0'};
   position: relative;
@@ -29,17 +29,19 @@ const DeviceMask = styled.div`
   height: ${props => `${props.height}%` || '0%'};
   top: ${props => `${props.top}%` || '0%'};
   left: ${props => `${props.left}%` || '0%'};
+  //max-width: 40px;
 `;
+
+
 
 
 const DeviceItem = (props) => {
 
     const deviceWrapperStyle = getDeviceWrapperStyle(props.locationId, props.name, props.deviceAmount);
 
-
     return (
        <DeviceWrapper {...deviceWrapperStyle}>
-           {/*<DeviceMask {...props.props}/>*/}
+           <DeviceMask {...props.mask}/>
            <DeviceImg src={props.src} alt={`${props.name}-img`}/>
        </DeviceWrapper>
     );
