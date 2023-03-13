@@ -1,12 +1,14 @@
-import {createContext, useReducer} from "react";
+import {createContext, useReducer, useState} from "react";
 import {getLocationStyle} from "../helpers/getLocationStyle.js";
 
 export const CountriesContext = createContext(null);
+export const CountriesSelectedContext = createContext(0);
 export const CountriesDispatchContext = createContext(null);
 
 export const CountriesProvider = ({children}) => {
 
     const [countries, dispatchCountries] = useReducer(countriesReducer, initValue);
+
 
     return (
         <CountriesContext.Provider value={countries}>

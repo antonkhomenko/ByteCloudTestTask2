@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
 import {getDeviceWrapperStyle} from "../helpers/getDeviceWrapperStyle.js";
-import mm from '/src/assets/medium_mask.png';
 
 const DeviceImg = styled.img`
     max-width: 40px;

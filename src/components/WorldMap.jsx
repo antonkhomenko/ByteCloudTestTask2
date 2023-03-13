@@ -1,9 +1,11 @@
 import styled from "styled-components";
 import UserList from "./UserList.jsx";
 import Devices from "./Devices.jsx";
-import React, {useContext, useState} from "react";
+import React, {useContext, useEffect, useMemo, useState} from "react";
 import {CountriesContext, CountriesDispatchContext} from "../contexts/CountriesContext.jsx";
 import ClickAnimation from "./ClickAnimation.jsx";
+import {NavigationDispatchContext} from "../contexts/NavigationContext.jsx";
+import {getSelectedCountries} from "../helpers/getSelectedCountries.js";
 
 const MapWrapper = styled.div`
   min-width: 350px;
@@ -38,9 +40,18 @@ const WorldMap = () => {
 
     const countries = useContext(CountriesContext);
     const countriesDispatch = useContext(CountriesDispatchContext);
+
+    const setStep = useContext(NavigationDispatchContext);
+
     const [clickAnimation, setClickAnimation] = useState({show: false, top: '0px', left: '0px'});
 
+    const selectedCountries = getSelectedCountries(countries);
 
+    useEffect(() => {
+        if(selectedCountries.length === countries.length) {
+            setStep(2);
+        }
+    }, [selectedCountries])
 
     const handleClick = (targetIndex, event) => {
         countriesDispatch({
