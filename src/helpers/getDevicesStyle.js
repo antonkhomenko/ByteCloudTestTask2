@@ -1,26 +1,28 @@
 
 
-export const getDevicesStyle = (locationId) => {
+export const getDevicesStyle = (name) => {
     const wrapperStyle = {};
 
-    switch (locationId) {
-        case 0: {
+    switch (name) {
+        case "NorthAmerica": {
             wrapperStyle.flexDirection = 'row-reverse';
+            wrapperStyle.justifyContent = 'center';
+            wrapperStyle.gap = '7%';
             break;
         }
-        case 1: {
+        case "SouthAmerica": {
             wrapperStyle.flexDirection = 'column';
             break;
         }
-        case 2: {
+        case "Europe": {
             wrapperStyle.flexDirection = 'row';
             break;
         }
-        case 3: {
+        case "Asia": {
             wrapperStyle.flexDirection = 'row';
             break;
         }
-        case 4: {
+        case "Australia": {
             wrapperStyle.flexDirection = 'row';
             break;
         }

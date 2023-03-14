@@ -3,7 +3,7 @@ import styled from "styled-components";
 import {getDeviceWrapperStyle} from "../helpers/getDeviceWrapperStyle.js";
 
 const DeviceImg = styled.img`
-    max-width: 40px;
+    max-width: 35px;
     width: 100%;
     height: auto;
     max-height: 100%;
@@ -36,7 +36,9 @@ const DeviceMask = styled.div`
 
 const DeviceItem = (props) => {
 
-    const deviceWrapperStyle = getDeviceWrapperStyle(props.locationId, props.name, props.deviceAmount);
+    const deviceWrapperStyle = getDeviceWrapperStyle(props.location, props.name, props.deviceAmount);
+
+
 
     return (
        <DeviceWrapper {...deviceWrapperStyle}>

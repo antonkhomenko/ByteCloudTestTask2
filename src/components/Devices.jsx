@@ -11,7 +11,8 @@ const Wrapper = styled.div`
   height: 100%;
   display: flex;
   flex-direction: ${props => props.flexDirection || 'row'};
-  justify-content: space-between;
+  justify-content: ${props => props.justifyContent || 'space-between'};
+  gap: ${props => props.gap || '0'};
   align-items: center;
 `;
 
@@ -19,21 +20,24 @@ const Wrapper = styled.div`
 
 
 
-const Devices = ({locationId, name}) => {
+const Devices = ({locationId, location}) => {
 
     const countries = useContext(CountriesContext);
     const devicesAmount = countries[locationId].selectedUsers;
 
-    const deviceList = getDeviceList(locationId, devicesAmount);
+    const deviceList = getDeviceList(location, devicesAmount);
 
-    const deviceWrapper = getDevicesStyle(locationId);
+
+    const deviceWrapper = getDevicesStyle(location);
+
+
 
 
     return (
         <Wrapper {...deviceWrapper}>
             {
               deviceList.map(item => {
-                  return <DeviceItem {...item}  wrapper={deviceWrapper} locationId={locationId} deviceAmount={devicesAmount} key={item.name}/>
+                  return <DeviceItem {...item}  location={location} wrapper={deviceWrapper} locationId={locationId} deviceAmount={devicesAmount} key={item.name}/>
               })
             }
         </Wrapper>

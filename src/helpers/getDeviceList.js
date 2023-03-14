@@ -10,7 +10,7 @@ const initValue = [
 
 
 
-export const getDeviceList = (locationId, devicesAmount) => {
+export const getDeviceList = (name, devicesAmount) => {
     const filteredDevicesList = initValue.filter((item, index) => index + 1 <= devicesAmount);
 
 
