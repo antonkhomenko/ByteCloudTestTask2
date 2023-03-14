@@ -1,8 +1,8 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import styled from "styled-components";
 import {NavigationContext, NavigationDispatchContext} from "../contexts/NavigationContext.jsx";
 import {getSelectedCountries} from "../helpers/getSelectedCountries.js";
-import {CountriesContext} from "../contexts/CountriesContext.jsx";
+import {CountriesContext, CountriesDispatchContext} from "../contexts/CountriesContext.jsx";
 
 const Wrapper = styled.div`
   max-width: 1200px;
@@ -44,6 +44,7 @@ const getNavigationTitle = (step) => {
 const Navigation = () => {
 
     const countries = useContext(CountriesContext);
+    const countriesDispatch = useContext(CountriesDispatchContext);
     const step = useContext(NavigationContext);
     const setStep = useContext(NavigationDispatchContext);
 
@@ -53,6 +54,15 @@ const Navigation = () => {
         if(selectedCountries.length === 0) return;
         setStep(step + 1);
     }
+
+    useEffect(() => {
+        if(step === 2) {
+            countriesDispatch({
+                type: 'filterCountries',
+                countries: selectedCountries,
+            });
+        }
+    }, [step]);
 
     return (
         <Wrapper>

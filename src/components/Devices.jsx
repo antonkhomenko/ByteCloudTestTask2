@@ -19,7 +19,7 @@ const Wrapper = styled.div`
 
 
 
-const Devices = ({locationId}) => {
+const Devices = ({locationId, name}) => {
 
     const countries = useContext(CountriesContext);
     const devicesAmount = countries[locationId].selectedUsers;

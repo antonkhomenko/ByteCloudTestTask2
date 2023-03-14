@@ -35,8 +35,25 @@ const LocationBlock = styled.div`
   left: ${props => props.left};
 `;
 
+const StorageLocationBlock = styled.div`
+  width: 5%;
+  height: 8%;
+  background: red;
+  position: absolute;
+  top: ${props => `${props.top}%`};
+  left: ${props => `${props.left}%`};
+`;
+
+const StorageWrapper = styled.div`
+  position: relative;
+  width: 100%;
+  height: 100%;
+  
+`;
+
 
 const WorldMap = () => {
+
 
     const countries = useContext(CountriesContext);
     const countriesDispatch = useContext(CountriesDispatchContext);
@@ -47,6 +64,9 @@ const WorldMap = () => {
 
     const selectedCountries = getSelectedCountries(countries);
 
+
+
+
     useEffect(() => {
         if(selectedCountries.length === countries.length) {
             setStep(2);
@@ -54,6 +74,7 @@ const WorldMap = () => {
     }, [selectedCountries])
 
     const handleClick = (targetIndex, event) => {
+
         countriesDispatch({
             type: 'showDevices',
             id: targetIndex,
@@ -83,7 +104,7 @@ const WorldMap = () => {
                 countries.map((item, index) => {
                     return (
                         <LocationBlock key={item.name} {...item}>
-                            {item.showDevices ? <Devices locationId={index}/> : <UserList onClick={(event) => handleClick(index, event)}/>}
+                                {item.showDevices ? <Devices name={item.name} locationId={index}/> : <UserList onClick={(event) => handleClick(index, event)}/>}
                         </LocationBlock>
                     )
                 })
@@ -94,3 +115,15 @@ const WorldMap = () => {
 
 
 export default WorldMap;
+
+const storageLocation = [
+    {top: 20, left: 20, name: 'NorthAmerica'},
+    {top: 20, left: 20, name: 'SouthAmerica'},
+    {top: 20, left: 20, name: 'Europe'},
+    {top: 20, left: 20, name: 'Asia'},
+    {top: 20, left: 20, name: 'Australia'},
+];
+
+const getStorageLocationStyle = (name) => {
+    return storageLocation.find(item => item.name === name);
+}
