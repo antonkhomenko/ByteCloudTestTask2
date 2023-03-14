@@ -59,7 +59,7 @@ const WorldMap = () => {
         if(selectedCountries.length === countries.length) {
             setStep(2);
         }
-    }, [selectedCountries])
+    }, [selectedCountries.length])
 
     const handleClick = (targetIndex, event) => {
 

@@ -34,7 +34,7 @@ const getNavigationTitle = (step) => {
             return 'Where is your data ? Chose one spot for Object Storage System';
         }
         case 3: {
-            return 'Do you want to'
+            return 'Choose minimum two additional spots for ByteCloud and press'
         }
     }
 }

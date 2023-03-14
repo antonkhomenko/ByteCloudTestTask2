@@ -1,7 +1,11 @@
-import React, {useState} from 'react'
+import React, {useContext, useState} from 'react'
 import styled from "styled-components";
 import empty from '/src/assets/circle_empty.png';
 import filled from '/src/assets/circle_filled.png';
+import server from '/src/assets/server.png';
+import serverBC from '/src/assets/server_ByteCloud.png';
+
+import {NavigationContext, NavigationDispatchContext} from "../contexts/NavigationContext.jsx";
 
 const Wrapper = styled.div`
   width: 4%;
@@ -15,34 +19,55 @@ const Wrapper = styled.div`
   align-items: center;
 `;
 
-const StorageLoader = styled.img`
+const StorageImg = styled.img`
   width: auto;
   height: 100%;
   cursor: pointer;
 `;
 
+
+
+
+
 const StorageListItem = (props) => {
 
-    const [circleState, setCircleState] = useState(empty);
-
+    const [storageState, setStorageState] = useState(empty);
+    const step = useContext(NavigationContext);
+    const setStep = useContext(NavigationDispatchContext);
 
     const mouseEnter = () => {
-        setCircleState(filled);
+        if(storageState === server || storageState === serverBC) return;
+        setStorageState(filled);
     }
 
     const mouseLeave = () => {
-        setCircleState(empty);
+        if(storageState === server || storageState === serverBC) return;
+        setStorageState(empty);
     }
+
+    const handleClick = () => {
+        setStep(3);
+        if(step === 2) {
+            setStorageState(server);
+        } else {
+            setStorageState(serverBC);
+        }
+    }
+
+
+
 
     return (
         <Wrapper {...props}>
-            <StorageLoader
-                src={circleState} alt={'loader-img'}
+            <StorageImg
+                src={storageState} alt={'loader-img'}
                 onMouseEnter={mouseEnter}
                 onMouseLeave={mouseLeave}
+                onClick={handleClick}
             />
         </Wrapper>
     );
 };
 
 export default StorageListItem;
+
