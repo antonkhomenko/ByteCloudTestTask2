@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import ArcItem from "./ArcItem.jsx";
 import arc1 from '/src/assets/arcs/arc_east-usa_asia_large.png';
+import {getClosestServer} from "../helpers/getClosestServer.js";
 
 
 const getArcImgName = (storageItem, countryItem, sizeItem) => {
@@ -66,25 +67,33 @@ const getArcsImgs = (data) => {
     const objectStorage = storage.find(item => item.objectStorage === true);
 
 
+
     let result = [];
 
-    for (let i = 0; i < countries.length; i++) {
-        for(let s = 1; s <= countries[i].selectedUsers; s++) {
-            result.push(path + getArcImgName(objectStorage, countries[i], s));
-        }
-    }
+    //Object Storage Loop
 
-    console.log(result);
+    // for (let i = 0; i < countries.length; i++) {
+    //     for(let s = 1; s <= countries[i].selectedUsers; s++) {
+    //         result.push(path + getArcImgName(objectStorage, countries[i], s));
+    //     }
+    // }
+
+    const closestServers = getClosestServer(storage, countries);
+
+
+    closestServers.forEach(item => {
+       for(let i = 1; i <= item[0].selectedUsers; i++) {
+           result.push(path + getArcImgName(item[1], item[0], i));
+       }
+    });
+
+
 
     return result;
 }
 
 
-const getClosestServer = (data) => {
 
-    // switch ()
-
-}
 
 
 
