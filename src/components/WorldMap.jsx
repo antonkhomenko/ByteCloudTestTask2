@@ -7,6 +7,7 @@ import ClickAnimation from "./ClickAnimation.jsx";
 import {NavigationContext, NavigationDispatchContext} from "../contexts/NavigationContext.jsx";
 import {getSelectedCountries} from "../helpers/getSelectedCountries.js";
 import StorageList from "./StorageList.jsx";
+import Arcs from "./Arcs.jsx";
 
 const MapWrapper = styled.div`
   min-width: 350px;
@@ -81,7 +82,9 @@ const WorldMap = () => {
         return targetIndex;
     }
 
-    console.log(clickAnimation);
+   if(step === 5) {
+       console.log(countries);
+   }
 
 
     return (
@@ -101,6 +104,11 @@ const WorldMap = () => {
             {
                 step > 1 && <StorageList setClickAnimation={setClickAnimation}/>
             }
+
+            {
+                step === 5 && <Arcs/>
+            }
+
         </MapWrapper></>
     );
 };

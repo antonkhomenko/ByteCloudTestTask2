@@ -29,7 +29,7 @@ const Btn = styled.button`
   
 `
 
-const getNavigationTitle = (step, onClick) => {
+const getNavigationTitle = (step) => {
 
 
     switch (step) {
@@ -93,7 +93,6 @@ const Navigation = () => {
         if(step === 1) {
             if(selectedCountries.length === 0) return;
         }
-        if(step === 3) return;
         setStep(step + 1);
     }
 

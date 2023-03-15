@@ -18,14 +18,17 @@ const StorageList = ({setClickAnimation}) => {
 
     const selectedLocationAmount = getSelectedStorage(storageLocation).length;
 
-
+    if(step === 5) {
+        console.log(storageLocation);
+    }
 
     useEffect(() => {
-        if(selectedLocationAmount === 4) {
-            setStep(5);
-        }
+
         if(step === 3 && selectedLocationAmount === 3) {
             setStep(4);
+        }
+        if(step === 4 && selectedLocationAmount === 4) {
+            setStep(5)
         }
         if(step === 5) {
             const newStorageLocation = storageLocation.filter(item => item.isSelected === true);

@@ -47,7 +47,6 @@ const StorageListItem = ({storageItem, setStorage, setClickAnimation}) => {
     }
 
     const handleClick = (event) => {
-        setStep(3);
         setStorage(prev => prev.map(item => {
             if(item.name === storageItem.name) {
                 return {...item, isSelected: true};
@@ -68,8 +67,9 @@ const StorageListItem = ({storageItem, setStorage, setClickAnimation}) => {
 
         if(step === 2) {
             setStorageState(server);
+            setStep(3);
         }
-        else if(step === 3) {
+        else if(step === 3 || step === 4) {
             setStorageState(serverBC);
         }
 
