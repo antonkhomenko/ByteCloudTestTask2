@@ -53,7 +53,7 @@ const WorldMap = () => {
 
     const selectedCountries = getSelectedCountries(countries);
 
-
+    const [storageLocation, setStorageLocation] = useState(initValue);
 
 
     useEffect(() => {
@@ -82,9 +82,13 @@ const WorldMap = () => {
         return targetIndex;
     }
 
-   if(step === 5) {
-       console.log(countries);
-   }
+    const [arcsData, setArcsData] = useState({});
+
+   useEffect(() => {
+       if(step === 5) {
+           setArcsData({storage: storageLocation, countries: countries});
+       }
+   }, [step])
 
 
     return (
@@ -102,11 +106,15 @@ const WorldMap = () => {
                 })
             }
             {
-                step > 1 && <StorageList setClickAnimation={setClickAnimation}/>
+                step > 1 && <StorageList
+                            setClickAnimation={setClickAnimation}
+                            storageLocation={storageLocation}
+                            setStorageLocation={setStorageLocation}
+                />
             }
 
             {
-                step === 5 && <Arcs/>
+                step === 5 && <Arcs data={arcsData}/>
             }
 
         </MapWrapper></>
@@ -116,4 +124,10 @@ const WorldMap = () => {
 
 export default WorldMap;
 
+const initValue = [
+    {top: 40, left: 29, name: 'NorthAmerica1', isSelected: false, objectStorage: false},
+    {top: 40, left: 12, name: 'NorthAmerica2', isSelected: false, objectStorage: false},
+    {top: 37, left: 48, name: 'Europe', isSelected: false, objectStorage: false},
+    {top: 66, left: 75, name: 'Asia', isSelected: false, objectStorage: false},
+];
 

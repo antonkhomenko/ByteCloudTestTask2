@@ -50,7 +50,7 @@ const getNavigationTitle = (step) => {
         case 3: {
             return {
                 title: 'Choose minimum two additional spots for ByteCloud and press',
-                btn: "Next",
+                btn: "Start",
                 active: true,
             }
         }
@@ -93,6 +93,7 @@ const Navigation = () => {
         if(step === 1) {
             if(selectedCountries.length === 0) return;
         }
+        if(step === 3) return;
         setStep(step + 1);
     }
 

@@ -10,17 +10,14 @@ const getSelectedStorage = (storage) => {
 
 
 
-const StorageList = ({setClickAnimation}) => {
+const StorageList = ({setClickAnimation, setStorageLocation, storageLocation}) => {
 
-    const [storageLocation, setStorageLocation] = useState(initValue);
     const setStep = useContext(NavigationDispatchContext);
     const step = useContext(NavigationContext);
 
     const selectedLocationAmount = getSelectedStorage(storageLocation).length;
 
-    if(step === 5) {
-        console.log(storageLocation);
-    }
+    console.log(selectedLocationAmount)
 
     useEffect(() => {
 
@@ -38,12 +35,14 @@ const StorageList = ({setClickAnimation}) => {
 
 
 
+
     return (
        <div>
            {
                storageLocation.map(item => (
                    <StorageListItem
                        storageItem={item}
+                       storage={storageLocation}
                        setStorage={setStorageLocation}
                        setClickAnimation={setClickAnimation}
                        key={item.name}
@@ -56,9 +55,3 @@ const StorageList = ({setClickAnimation}) => {
 
 export default StorageList;
 
-const initValue = [
-    {top: 40, left: 29, name: 'NorthAmerica1', isSelected: false},
-    {top: 40, left: 12, name: 'NorthAmerica2', isSelected: false},
-    {top: 37, left: 48, name: 'Europe', isSelected: false},
-    {top: 66, left: 75, name: 'Asia', isSelected: false},
-];

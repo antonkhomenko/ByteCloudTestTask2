@@ -17,7 +17,8 @@ const DeviceWrapper = styled.div`
   align-self: ${props => props.alignSelf || 'center'};
   margin: ${props => props.margin || '0 0 0 0'};
   position: relative;
-  order: ${props => props.order || '0'}
+  order: ${props => props.order || '0'};
+  z-index: 3;
 `;
 
 const DeviceMask = styled.div`

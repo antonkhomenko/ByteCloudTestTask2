@@ -17,6 +17,7 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 3;
 `;
 
 const StorageImg = styled.img`
@@ -28,8 +29,7 @@ const StorageImg = styled.img`
 
 
 
-
-const StorageListItem = ({storageItem, setStorage, setClickAnimation}) => {
+const StorageListItem = ({storageItem, setStorage, setClickAnimation, storage}) => {
 
     const [storageState, setStorageState] = useState(empty);
     const step = useContext(NavigationContext);
@@ -47,32 +47,40 @@ const StorageListItem = ({storageItem, setStorage, setClickAnimation}) => {
     }
 
     const handleClick = (event) => {
-        setStorage(prev => prev.map(item => {
-            if(item.name === storageItem.name) {
-                return {...item, isSelected: true};
+        if(storageState === empty || storageState === filled) {
+            setClickAnimation({
+                show: true,
+                top: event.pageY,
+                left: event.pageX,
+            });
+
+            setTimeout(() => {
+                setClickAnimation({})
+            }, 200);
+
+            setStorage(prev => prev.map(item => {
+                if(item.name === storageItem.name) {
+                    return {...item, isSelected: true};
+                }
+                return {...item};
+            }));
+
+
+            if(step === 2) {
+                setStorageState(server);
+                setStorage(storage.map(item => {
+                    if(item.name === storageItem.name) {
+                        return {...item, isSelected: true ,objectStorage: true};
+                    }
+                    return item;
+                }))
+                setStep(3);
             }
-            return {...item};
-        }))
+            else if(step === 3 || step === 4) {
+                setStorageState(serverBC);
+            }
 
-        setClickAnimation({
-            show: true,
-            top: event.pageY,
-            left: event.pageX,
-        });
-
-        setTimeout(() => {
-            setClickAnimation({})
-        }, 200);
-
-
-        if(step === 2) {
-            setStorageState(server);
-            setStep(3);
         }
-        else if(step === 3 || step === 4) {
-            setStorageState(serverBC);
-        }
-
 
     }
 

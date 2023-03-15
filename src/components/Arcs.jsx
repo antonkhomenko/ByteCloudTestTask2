@@ -1,19 +1,16 @@
 import styled from "styled-components";
-
-const Wrapper = styled.div`
-
-
-`
+import ArcItem from "./ArcItem.jsx";
+import arc1 from '/src/assets/arcs/arc_east-usa_asia_large.png';
 
 
 
-const Arcs = () => {
 
+const Arcs = ({data}) => {
+
+    console.log(data);
 
     return (
-        <div style={{color: 'black', fontSize: '13rem', position: 'absolute'}}>
-            Arcs
-        </div>
+        <ArcItem src={arc1}/>
     );
 };
 
