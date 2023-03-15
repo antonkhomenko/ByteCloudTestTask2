@@ -10,7 +10,7 @@ const getSelectedStorage = (storage) => {
 
 
 
-const StorageList = () => {
+const StorageList = ({setClickAnimation}) => {
 
     const [storageLocation, setStorageLocation] = useState(initValue);
     const setStep = useContext(NavigationDispatchContext);
@@ -18,7 +18,7 @@ const StorageList = () => {
 
     const selectedLocationAmount = getSelectedStorage(storageLocation).length;
 
-    console.log(getSelectedStorage(storageLocation));
+
 
     useEffect(() => {
         if(selectedLocationAmount === 4) {
@@ -42,6 +42,7 @@ const StorageList = () => {
                    <StorageListItem
                        storageItem={item}
                        setStorage={setStorageLocation}
+                       setClickAnimation={setClickAnimation}
                        key={item.name}
                    />
                ))

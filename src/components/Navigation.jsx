@@ -3,7 +3,7 @@ import styled from "styled-components";
 import {NavigationContext, NavigationDispatchContext} from "../contexts/NavigationContext.jsx";
 import {getSelectedCountries} from "../helpers/getSelectedCountries.js";
 import {CountriesContext, CountriesDispatchContext} from "../contexts/CountriesContext.jsx";
-import {useStep} from "../hooks/useStep.js";
+
 
 
 const Wrapper = styled.div`
@@ -88,7 +88,6 @@ const Navigation = () => {
 
     const selectedCountries = getSelectedCountries(countries);
 
-    const [btnActive, setBtnActive] = useState(true);
 
     const handleClick = () => {
         if(step === 1) {
@@ -101,8 +100,14 @@ const Navigation = () => {
     const data = getNavigationTitle(step);
 
 
-
-    useStep(step, countriesDispatch, selectedCountries, setBtnActive);
+    useEffect(() => {
+        if(step === 2) {
+            countriesDispatch({
+                type: 'filterCountries',
+                countries: selectedCountries,
+            });
+        }
+    }, [step]);
 
     return (
         <Wrapper>

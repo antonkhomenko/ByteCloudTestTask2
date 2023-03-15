@@ -29,7 +29,7 @@ const StorageImg = styled.img`
 
 
 
-const StorageListItem = ({storageItem, setStorage}) => {
+const StorageListItem = ({storageItem, setStorage, setClickAnimation}) => {
 
     const [storageState, setStorageState] = useState(empty);
     const step = useContext(NavigationContext);
@@ -46,7 +46,7 @@ const StorageListItem = ({storageItem, setStorage}) => {
         setStorageState(empty);
     }
 
-    const handleClick = () => {
+    const handleClick = (event) => {
         setStep(3);
         setStorage(prev => prev.map(item => {
             if(item.name === storageItem.name) {
@@ -54,11 +54,25 @@ const StorageListItem = ({storageItem, setStorage}) => {
             }
             return {...item};
         }))
+
+        setClickAnimation({
+            show: true,
+            top: event.pageY,
+            left: event.pageX,
+        });
+
+        setTimeout(() => {
+            setClickAnimation({})
+        }, 200);
+
+
         if(step === 2) {
             setStorageState(server);
-        } else {
+        }
+        else if(step === 3) {
             setStorageState(serverBC);
         }
+
 
     }
 
@@ -73,7 +87,7 @@ const StorageListItem = ({storageItem, setStorage}) => {
                 src={storageState} alt={'loader-img'}
                 onMouseEnter={mouseEnter}
                 onMouseLeave={mouseLeave}
-                onClick={handleClick}
+                onClick={e => handleClick(e)}
             />
         </Wrapper>
     );

@@ -81,6 +81,7 @@ const WorldMap = () => {
         return targetIndex;
     }
 
+    console.log(clickAnimation);
 
 
     return (
@@ -98,7 +99,7 @@ const WorldMap = () => {
                 })
             }
             {
-                step > 1 && <StorageList/>
+                step > 1 && <StorageList setClickAnimation={setClickAnimation}/>
             }
         </MapWrapper></>
     );
