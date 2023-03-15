@@ -3,6 +3,8 @@ import styled from "styled-components";
 import {NavigationContext, NavigationDispatchContext} from "../contexts/NavigationContext.jsx";
 import {getSelectedCountries} from "../helpers/getSelectedCountries.js";
 import {CountriesContext, CountriesDispatchContext} from "../contexts/CountriesContext.jsx";
+import {useStep} from "../hooks/useStep.js";
+
 
 const Wrapper = styled.div`
   max-width: 1200px;
@@ -23,21 +25,54 @@ const Btn = styled.button`
   color: blue;
   font-size: 1rem;
   cursor: pointer;
+  display: ${props => props.active ? 'block' : 'none'};
+  
 `
 
-const getNavigationTitle = (step) => {
+const getNavigationTitle = (step, onClick) => {
+
+
     switch (step) {
         case 1: {
-            return 'Where are you users ? Chose the number for every region.';
+            return {
+                title: 'Where are you users ? Chose the number for every region.',
+                btn: 'Next',
+                active: true,
+            }
         }
         case 2: {
-            return 'Where is your data ? Chose one spot for Object Storage System';
+            return {
+                title: 'Where is your data ? Chose one spot for Object Storage System',
+                btn: "",
+                active: false,
+            }
         }
         case 3: {
-            return 'Choose minimum two additional spots for ByteCloud and press'
+            return {
+                title: 'Choose minimum two additional spots for ByteCloud and press',
+                btn: "Next",
+                active: true,
+            }
+        }
+        case 4: {
+            return {
+                title: 'Choose minimum two additional spots for ByteCloud and press',
+                btn: "Start",
+                active: true,
+            }
+        }
+        case 5: {
+            return {
+                title: '',
+                btn: '',
+                active: false,
+            }
         }
     }
 }
+
+
+
 
 
 
@@ -45,29 +80,39 @@ const Navigation = () => {
 
     const countries = useContext(CountriesContext);
     const countriesDispatch = useContext(CountriesDispatchContext);
+
+
+
     const step = useContext(NavigationContext);
     const setStep = useContext(NavigationDispatchContext);
 
     const selectedCountries = getSelectedCountries(countries);
 
+    const [btnActive, setBtnActive] = useState(true);
+
     const handleClick = () => {
-        if(selectedCountries.length === 0) return;
+        if(step === 1) {
+            if(selectedCountries.length === 0) return;
+        }
+        if(step === 3) return;
         setStep(step + 1);
     }
 
-    useEffect(() => {
-        if(step === 2) {
-            countriesDispatch({
-                type: 'filterCountries',
-                countries: selectedCountries,
-            });
-        }
-    }, [step]);
+    const data = getNavigationTitle(step);
+
+
+
+    useStep(step, countriesDispatch, selectedCountries, setBtnActive);
 
     return (
         <Wrapper>
-            <p>{getNavigationTitle(step)}</p>
-            <Btn onClick={handleClick}>Next</Btn>
+            <p>{data.title}</p>
+            <Btn
+                onClick={handleClick}
+                active={data.active}
+            >
+                {data.btn}
+            </Btn>
         </Wrapper>
     );
 };

@@ -53,9 +53,9 @@ const countriesReducer = (countries, action) => {
 
 
 const initValue = [
-    {top: '35%', left: '16%', name: "NorthAmerica", showDevice: false, selectedUsers: 0, showStorage: false},
-    {top: '64%', left: '26%', name: 'SouthAmerica', showDevice: false, selectedUsers: 0, showStorage: false},
-    {top: '30%', left: '47%', name: 'Europe', showDevice: false, selectedUsers: 0, showStorage: false},
-    {top: '42%', left: '68%', name: 'Asia', showDevice: false, selectedUsers: 0, showStorage: false},
-    {top: '70%', left: '76%', name: 'Australia', showDevice: false, selectedUsers: 0, showStorage: false},
+    {top: '35%', left: '16%', name: "NorthAmerica", showDevice: false, selectedUsers: 0},
+    {top: '64%', left: '26%', name: 'SouthAmerica', showDevice: false, selectedUsers: 0},
+    {top: '30%', left: '47%', name: 'Europe', showDevice: false, selectedUsers: 0},
+    {top: '42%', left: '68%', name: 'Asia', showDevice: false, selectedUsers: 0},
+    {top: '70%', left: '76%', name: 'Australia', showDevice: false, selectedUsers: 0},
 ];

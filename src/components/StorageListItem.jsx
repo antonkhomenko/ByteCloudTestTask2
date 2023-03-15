@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react'
+import React, {useContext, useEffect, useRef, useState} from 'react'
 import styled from "styled-components";
 import empty from '/src/assets/circle_empty.png';
 import filled from '/src/assets/circle_filled.png';
@@ -29,11 +29,12 @@ const StorageImg = styled.img`
 
 
 
-const StorageListItem = (props) => {
+const StorageListItem = ({storageItem, setStorage}) => {
 
     const [storageState, setStorageState] = useState(empty);
     const step = useContext(NavigationContext);
     const setStep = useContext(NavigationDispatchContext);
+
 
     const mouseEnter = () => {
         if(storageState === server || storageState === serverBC) return;
@@ -47,18 +48,27 @@ const StorageListItem = (props) => {
 
     const handleClick = () => {
         setStep(3);
+        setStorage(prev => prev.map(item => {
+            if(item.name === storageItem.name) {
+                return {...item, isSelected: true};
+            }
+            return {...item};
+        }))
         if(step === 2) {
             setStorageState(server);
         } else {
             setStorageState(serverBC);
         }
+
     }
 
 
 
 
+
+
     return (
-        <Wrapper {...props}>
+        <Wrapper top={storageItem.top} left={storageItem.left}>
             <StorageImg
                 src={storageState} alt={'loader-img'}
                 onMouseEnter={mouseEnter}
