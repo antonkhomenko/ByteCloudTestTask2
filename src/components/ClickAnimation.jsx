@@ -29,7 +29,7 @@ const Circle = styled.div`
   width: 15px;
   height: 15px;
   display: ${props => props.show ? 'block' : 'none'};
-  z-index: 2;
+  z-index: 5;
 `;
 
 

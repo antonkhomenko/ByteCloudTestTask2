@@ -126,8 +126,8 @@ const WorldMap = () => {
 export default WorldMap;
 
 const initValue = [
-    {top: 40, left: 29, name: 'NorthAmerica1', isSelected: false, objectStorage: false},
-    {top: 40, left: 12, name: 'NorthAmerica2', isSelected: false, objectStorage: false},
+    {top: 43, left: 28, name: 'NorthAmerica1', isSelected: false, objectStorage: false},
+    {top: 43, left: 13, name: 'NorthAmerica2', isSelected: false, objectStorage: false},
     {top: 37, left: 48, name: 'Europe', isSelected: false, objectStorage: false},
     {top: 66, left: 75, name: 'Asia', isSelected: false, objectStorage: false},
 ];
