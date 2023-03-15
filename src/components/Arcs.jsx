@@ -57,25 +57,34 @@ const getArcImgName = (storageItem, countryItem, sizeItem) => {
 
 
 const getArcsImgs = (data) => {
+
     let path = '/src/assets/arcs/';
+
     const countries = data.countries;
     const storage = data.storage;
 
+    const objectStorage = storage.find(item => item.objectStorage === true);
+
+
     let result = [];
 
-    for (let i = 0; i < storage.length; i++) {
-        for (let t = 0; t < countries.length; t++) {
-            for (let s = 1; s <= countries[t].selectedUsers; s++) {
-                result.push(path + getArcImgName(storage[i], countries[t], s));
-            }
+    for (let i = 0; i < countries.length; i++) {
+        for(let s = 1; s <= countries[i].selectedUsers; s++) {
+            result.push(path + getArcImgName(objectStorage, countries[i], s));
         }
     }
 
-
+    console.log(result);
 
     return result;
 }
 
+
+const getClosestServer = (data) => {
+
+    // switch ()
+
+}
 
 
 
