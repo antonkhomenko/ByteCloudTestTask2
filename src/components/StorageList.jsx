@@ -17,7 +17,6 @@ const StorageList = ({setClickAnimation, setStorageLocation, storageLocation}) =
 
     const selectedLocationAmount = getSelectedStorage(storageLocation).length;
 
-    console.log(selectedLocationAmount)
 
     useEffect(() => {
 
@@ -30,6 +29,7 @@ const StorageList = ({setClickAnimation, setStorageLocation, storageLocation}) =
         if(step === 5) {
             const newStorageLocation = storageLocation.filter(item => item.isSelected === true);
             setStorageLocation(newStorageLocation);
+            setStep(6);
         }
     }, [selectedLocationAmount, step]);
 

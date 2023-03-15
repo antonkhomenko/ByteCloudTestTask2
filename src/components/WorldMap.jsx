@@ -85,8 +85,9 @@ const WorldMap = () => {
     const [arcsData, setArcsData] = useState({});
 
    useEffect(() => {
-       if(step === 5) {
+       if(step === 6) {
            setArcsData({storage: storageLocation, countries: countries});
+           setStep(7);
        }
    }, [step])
 
@@ -114,7 +115,7 @@ const WorldMap = () => {
             }
 
             {
-                step === 5 && <Arcs data={arcsData}/>
+                step >= 7 && <Arcs data={arcsData}/>
             }
 
         </MapWrapper></>
