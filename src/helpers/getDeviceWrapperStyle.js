@@ -8,6 +8,7 @@ export const getDeviceWrapperStyle = (location, itemName, deviceAmount) => {
             if(itemName === 'medium') {
                 // styledObj.alignItems = 'flex-end';
                 styledObj.alignSelf = 'end';
+                styledObj.margin = deviceAmount < 3 ? '0 0 0 30%' : '0 0 0 0';
             }
             break;
         }
@@ -19,7 +20,7 @@ export const getDeviceWrapperStyle = (location, itemName, deviceAmount) => {
             else if(itemName === 'small') {
                 styledObj.order = '2';
                 styledObj.alignSelf = 'flex-end';
-                styledObj.margin = deviceAmount < 3 ? '25% 25% 0 0' : '0 23% 10% 0';
+                styledObj.margin = deviceAmount < 3 ? '35% 25% 0 0' : '0 23% 10% 0';
             }
             else {
                 styledObj.order = '1';
@@ -52,7 +53,7 @@ export const getDeviceWrapperStyle = (location, itemName, deviceAmount) => {
                 styledObj.order = '2';
                 // styledObj.alignItems = 'center';
                 styledObj.alignSelf = 'center';
-                styledObj.margin = deviceAmount < 3 ? '0 25% 0 0' : '15% 0 0 26%';
+                styledObj.margin = deviceAmount < 3 ? '10% 25% 0 0' : '15% 0 0 26%';
             }
             else if(itemName === 'medium') {
                 styledObj.order = '1';
