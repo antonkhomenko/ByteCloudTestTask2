@@ -51,6 +51,7 @@ const DeviceItem = (props) => {
 
     let [loaderWidth, setLoaderWidth] = useState(() => 0);
 
+
     useEffect(() => {
         if(step === 8) {
             setLoaderWidth(0);
@@ -79,6 +80,7 @@ const DeviceItem = (props) => {
     useEffect(() => {
 
         if(step >= 7) {
+            console.log(props.location + ' ' + props.fastDownload);
             if(props.latency !== 0) {
                 const downloadTime = props.latency * 3 - 5;
                 startInterval(downloadTime);

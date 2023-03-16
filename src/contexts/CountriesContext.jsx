@@ -1,5 +1,6 @@
-import {createContext, useReducer, useState} from "react";
+import {createContext, useContext, useEffect, useReducer, useState} from "react";
 import {getLocationStyle} from "../helpers/getLocationStyle.js";
+
 
 export const CountriesContext = createContext(null);
 export const CountriesSelectedContext = createContext(0);
@@ -42,6 +43,9 @@ const countriesReducer = (countries, action) => {
             return action.countries.map(item => {
                 return {...item, showStorage: true}
             })
+        }
+        case 'resetCountries': {
+            return initValue;
         }
         // case 'showStorage': {
         //     return countries.map(item => {

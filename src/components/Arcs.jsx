@@ -80,7 +80,6 @@ const getArcsImgs = (data, step) => {
     }
     if(step === 8){
 
-        console.log(step)
 
         const objectStorage =  storage.find(item => item.objectStorage === true);
 

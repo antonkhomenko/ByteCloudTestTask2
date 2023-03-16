@@ -61,6 +61,13 @@ const getNavigationTitle = (step) => {
                 active: true,
             }
         }
+        case 9: {
+            return {
+                title: 'Do you want to',
+                btn: 'Start again ?',
+                active: true,
+            }
+        }
         default: {
             return {
                 title: '',
@@ -95,6 +102,14 @@ const Navigation = () => {
             if(selectedCountries.length === 0) return;
         }
         if(step === 3) return;
+
+        if(step === 9) {
+            // setStep(1);
+            // countriesDispatch({type: 'resetCountries'});
+            window.location.reload();
+            return;
+        }
+
         setStep(step + 1);
     }
 

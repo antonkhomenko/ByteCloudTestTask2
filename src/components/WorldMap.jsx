@@ -89,18 +89,13 @@ const WorldMap = () => {
            setArcsData({storage: storageLocation, countries: countries});
            setStep(7);
        }
+
+
    }, [step])
 
     const [finishedDevices, setFinishedDevices] = useState(0);
 
-    // useEffect(() => {
-    //
-    //     if(step === 8) {
-    //         setFinishedDevices(0);
-    //
-    //     }
-    //
-    // }, [step, finishedDevices]);
+
 
 
     useEffect(() => {
