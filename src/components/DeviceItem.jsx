@@ -51,7 +51,12 @@ const DeviceItem = (props) => {
 
     let [loaderWidth, setLoaderWidth] = useState(() => 0);
 
-
+    useEffect(() => {
+        if(step === 8) {
+            props.setIntervalEnd(false);
+            setLoaderWidth(0);
+        }
+    }, [step])
 
     let timer;
     const startInterval = (downloadTime) => {
@@ -86,16 +91,18 @@ const DeviceItem = (props) => {
     }, [step, props.latency, loaderWidth]);
 
 
+
     return (
        <DeviceWrapper {...deviceWrapperStyle}>
            {
-               (step === 7 && props.latency !== 0)
+               (step >= 7 && props.latency !== 0)
                && (
                    <DeviceMask {...props.mask}>
                         <DeviceLoader style={{width: `${loaderWidth}%`}}/>
                    </DeviceMask>
                )
            }
+
            <DeviceImg src={props.src} alt={`${props.name}-img`}/>
        </DeviceWrapper>
     );

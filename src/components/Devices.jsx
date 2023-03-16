@@ -32,14 +32,14 @@ const LatencyWrapper = styled.div`
 
 
 
-const Devices = ({locationId, location, arcsData, setCounter}) => {
+const Devices = ({locationId, location, arcsData, setCounter, intervalEnd, setIntervalEnd}) => {
 
     const countries = useContext(CountriesContext);
     const devicesAmount = countries[locationId].selectedUsers;
     const step = useContext(NavigationContext);
 
     const deviceList = getDeviceList(location, devicesAmount);
-    const [intervalEnd, setIntervalEnd] = useState(false);
+
 
 
     const deviceWrapper = getDevicesStyle(location);
@@ -57,8 +57,9 @@ const Devices = ({locationId, location, arcsData, setCounter}) => {
     }, [deviceCounter]);
 
 
+
     useEffect(() => {
-        if(step >= 7) {
+        if(step === 7) {
             const {countries, storage} = arcsData;
             const dataNames = new Map();
             getClosestServer(storage, countries).forEach(item => {
@@ -66,7 +67,10 @@ const Devices = ({locationId, location, arcsData, setCounter}) => {
             });
             setLatency(getLatency(location, dataNames.get(location)));
             setFastDownload(calculateDownload(location, dataNames.get(location)));
-
+        }
+        if(step === 8) {
+            setLatency(getLatency(location, arcsData.storage.find(item => item.objectStorage === true).name));
+            console.log(latency);
         }
     }, [step]);
 
@@ -74,6 +78,8 @@ const Devices = ({locationId, location, arcsData, setCounter}) => {
         if(storage === 'NorthAmerica1' || storage === 'NorthAmerica2' && country === 'NorthAmerica') return true;
         else return country.includes(storage);
     }
+
+
 
     return (
         <Wrapper {...deviceWrapper}>
