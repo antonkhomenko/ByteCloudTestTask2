@@ -32,7 +32,7 @@ const LatencyWrapper = styled.div`
 
 
 
-const Devices = ({locationId, location, arcsData}) => {
+const Devices = ({locationId, location, arcsData, counter}) => {
 
     const countries = useContext(CountriesContext);
     const devicesAmount = countries[locationId].selectedUsers;
@@ -76,6 +76,7 @@ const Devices = ({locationId, location, arcsData}) => {
                           locationId={locationId} deviceAmount={devicesAmount}
                           key={item.name} latency={latency} fastDownload={fastDownload}
                           intervalEnd={intervalEnd} setIntervalEnd={setIntervalEnd}
+                          counter={counter}
                       />
                   )
               })

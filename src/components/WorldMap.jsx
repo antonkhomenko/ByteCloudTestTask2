@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import UserList from "./UserList.jsx";
 import Devices from "./Devices.jsx";
-import React, {useContext, useEffect, useMemo, useState} from "react";
+import React, {useContext, useEffect, useMemo, useRef, useState} from "react";
 import {CountriesContext, CountriesDispatchContext} from "../contexts/CountriesContext.jsx";
 import ClickAnimation from "./ClickAnimation.jsx";
 import {NavigationContext, NavigationDispatchContext} from "../contexts/NavigationContext.jsx";
@@ -91,6 +91,14 @@ const WorldMap = () => {
        }
    }, [step])
 
+    const [finishedDevices, setFinishedDevices] = useState(0);
+
+    useEffect(() => {
+        if(finishedDevices / 3 === countries.length) {
+            setStep(8);
+        }
+    }, [finishedDevices, countries.length]);
+
 
     return (
         <>
@@ -102,7 +110,7 @@ const WorldMap = () => {
                     return (
                         <LocationBlock key={item.name} {...item}>
                                 {item.showDevices
-                                    ? <Devices location={item.name} locationId={index} arcsData={arcsData}/>
+                                    ? <Devices location={item.name} locationId={index} arcsData={arcsData} counter={setFinishedDevices}/>
                                     : <UserList onClick={(event) => handleClick(index, event)}/>}
                         </LocationBlock>
                     )

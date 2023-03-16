@@ -77,9 +77,15 @@ const getArcsImgs = (data, step) => {
                 result.push(path + getArcImgName(item[1], item[0], i));
             }
         });
-    } else {
-        result = [];
-        const objectStorage = countries.find(item => item.objectStorage === true);
+    }
+    if(step === 8){
+        console.log('for all')
+
+        const objectStorage =  storage.find(item => item.objectStorage === true);
+
+        console.log(objectStorage);
+        console.log(countries)
+
         for (let i = 0; i < countries.length; i++) {
             for(let s = 1; s <= countries[i].selectedUsers; s++) {
                 result.push(path + getArcImgName(objectStorage, countries[i], s));
@@ -100,8 +106,14 @@ const getArcsImgs = (data, step) => {
 const Arcs = ({data}) => {
 
     const step = useContext(NavigationContext);
+    let arcsImgs;
 
-   const arcsImgs = getArcsImgs(data, step);
+    if(step === 7) {
+        arcsImgs = getArcsImgs(data, step);
+    }
+    if(step === 8) {
+        arcsImgs = getArcsImgs(data, step);
+    }
 
 
 

@@ -66,6 +66,7 @@ const DeviceItem = (props) => {
         if(loaderWidth >= 100) {
             clearInterval(timer);
             props.setIntervalEnd(true);
+            props.counter(prev => prev + 1);
         }
 
     }
