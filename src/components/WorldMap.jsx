@@ -8,6 +8,7 @@ import {NavigationContext, NavigationDispatchContext} from "../contexts/Navigati
 import {getSelectedCountries} from "../helpers/getSelectedCountries.js";
 import StorageList from "./StorageList.jsx";
 import Arcs from "./Arcs.jsx";
+import Modal from "./Modal.jsx";
 
 const MapWrapper = styled.div`
   min-width: 350px;
@@ -40,7 +41,7 @@ const LocationBlock = styled.div`
 
 
 
-const WorldMap = () => {
+const WorldMap = ({resultTable}) => {
 
 
     const countries = useContext(CountriesContext);
@@ -98,6 +99,7 @@ const WorldMap = () => {
 
 
 
+
     useEffect(() => {
 
         if(finishedDevices === countries.length && step === 7) {
@@ -124,6 +126,7 @@ const WorldMap = () => {
                                     ? <Devices
                                         location={item.name} locationId={index}
                                         arcsData={arcsData} setCounter={setFinishedDevices}
+                                        resultTable={resultTable}
                                         />
                                     : <UserList onClick={(event) => handleClick(index, event)}/>}
                         </LocationBlock>
@@ -140,6 +143,10 @@ const WorldMap = () => {
 
             {
                 step >= 7 && <Arcs data={arcsData}/>
+            }
+
+            {
+                step >= 9 && <Modal data={resultTable}/>
             }
 
         </MapWrapper></>

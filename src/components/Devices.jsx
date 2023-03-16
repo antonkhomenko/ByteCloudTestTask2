@@ -32,7 +32,7 @@ const LatencyWrapper = styled.div`
 
 
 
-const Devices = ({locationId, location, arcsData, setCounter}) => {
+const Devices = ({locationId, location, arcsData, setCounter, resultTable, }) => {
 
     const countries = useContext(CountriesContext);
     const devicesAmount = countries[locationId].selectedUsers;
@@ -60,7 +60,6 @@ const Devices = ({locationId, location, arcsData, setCounter}) => {
 
 
 
-
     useEffect(() => {
         if(step === 7) {
             const {countries, storage} = arcsData;
@@ -68,17 +67,22 @@ const Devices = ({locationId, location, arcsData, setCounter}) => {
             getClosestServer(storage, countries).forEach(item => {
                 dataNames.set(item[0].name, item[1].name);
             });
-            setLatency(getLatency(location, dataNames.get(location)));
+            const latency = getLatency(location, dataNames.get(location));
+            setLatency(latency);
+            resultTable.byteCloud.push({name: location, latency: latency});
             setFastDownload(calculateDownload(location, dataNames.get(location)));
         }
         if(step === 8) {
             setIntervalEnd(false);
             const objectStorage = arcsData.storage.find(item => item.objectStorage === true).name;
-            setLatency(getLatency(location, objectStorage));
+            const latency = getLatency(location, objectStorage);
+            setLatency(latency);
+            resultTable.objectStorage.push({name: location, latency: latency});
             setFastDownload(calculateDownload(location, objectStorage));
             setDeviceCounter(0);
-            // console.log('work time')
+
         }
+
     }, [step]);
 
     const calculateDownload = (country, storage) => {

@@ -80,7 +80,7 @@ const DeviceItem = (props) => {
     useEffect(() => {
 
         if(step >= 7) {
-            console.log(props.location + ' ' + props.fastDownload);
+
             if(props.latency !== 0) {
                 const downloadTime = props.latency * 3 - 5;
                 startInterval(downloadTime);
