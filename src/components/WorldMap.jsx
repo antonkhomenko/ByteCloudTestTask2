@@ -117,7 +117,7 @@ const WorldMap = ({resultTable}) => {
         <>
             <ClickAnimation {...clickAnimation}/>
             <MapWrapper>
-            <MapImg src={'/src/assets/map.png'} alt={'map-img'}/>
+            <MapImg src={'/imgs/map.png'} alt={'map-img'}/>
             {
                 countries.map((item, index) => {
                     return (
