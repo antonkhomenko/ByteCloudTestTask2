@@ -39,6 +39,7 @@ const Devices = ({locationId, location, arcsData}) => {
     const step = useContext(NavigationContext);
 
     const deviceList = getDeviceList(location, devicesAmount);
+    const [intervalEnd, setIntervalEnd] = useState(false);
 
 
     const deviceWrapper = getDevicesStyle(location);
@@ -74,12 +75,15 @@ const Devices = ({locationId, location, arcsData}) => {
                           {...item}  location={location} wrapper={deviceWrapper}
                           locationId={locationId} deviceAmount={devicesAmount}
                           key={item.name} latency={latency} fastDownload={fastDownload}
+                          intervalEnd={intervalEnd} setIntervalEnd={setIntervalEnd}
                       />
                   )
               })
             }
             {
-                step >= 7 && <LatencyWrapper>Latency {latency}</LatencyWrapper>
+                step >= 7 && <LatencyWrapper>
+                    {intervalEnd ? `Time: ${Math.round(latency * 3 - 5)}ms` : `Latency ${latency}`}
+                </LatencyWrapper>
             }
         </Wrapper>
     );

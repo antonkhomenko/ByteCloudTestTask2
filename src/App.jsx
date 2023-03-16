@@ -10,7 +10,7 @@ const App = () => {
 
 
     return (
-        <div style={{border: '5px solid red'}}>
+        <div>
             <NavigationProvider>
                 <CountriesProvider>
                     <Navigation/>

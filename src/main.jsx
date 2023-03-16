@@ -13,9 +13,6 @@ const Global = createGlobalStyle`
     font-family: 'Arial', sans-serif;
   }
   
-  body {
-    background: #000;
-  }
 `
 
 root.render(

@@ -25,7 +25,7 @@ const DeviceWrapper = styled.div`
 
 const DeviceMask = styled.div`
   position: absolute;
-  background-color: black;
+  //background-color: black;
   border-radius: ${props => `${props.br}` || '0px'};
   width: ${props => `${props.width}%` || '0%'};
   height: ${props => `${props.height}%` || '0%'};
@@ -36,7 +36,7 @@ const DeviceMask = styled.div`
 
 const DeviceLoader = styled.div`
   height: 100%;
-  background-color: #0303ab;
+  background-color: #0202b7;
 `;
 
 
@@ -56,7 +56,7 @@ const DeviceItem = (props) => {
     let timer;
     const startInterval = (downloadTime) => {
 
-        let timeout = props.fastDownload ? 1 : 10;
+        let timeout = props.fastDownload ? 1 : 5;
 
         timer = !timer && setInterval(() => {
             setLoaderWidth(prev => prev + (100 / downloadTime));
@@ -65,6 +65,7 @@ const DeviceItem = (props) => {
 
         if(loaderWidth >= 100) {
             clearInterval(timer);
+            props.setIntervalEnd(true);
         }
 
     }

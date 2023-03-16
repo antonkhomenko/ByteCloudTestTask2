@@ -15,7 +15,7 @@ const MapWrapper = styled.div`
   //width: min-content;
   margin: 0 auto;
   position: relative;
-  border: 5px solid green;
+  //border: 5px solid green;
 `;
 
 const MapImg = styled.img`
