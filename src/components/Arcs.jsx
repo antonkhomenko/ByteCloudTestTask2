@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import ArcItem from "./ArcItem.jsx";
-import arc1 from '/src/assets/arcs/arc_east-usa_asia_large.png';
+import arc1 from '/public/arcs/arc_east-usa_asia_large.png';
 import {getClosestServer} from "../helpers/getClosestServer.js";
 import {useContext} from "react";
 import {NavigationContext} from "../contexts/NavigationContext.jsx";
@@ -61,7 +61,7 @@ const getArcImgName = (storageItem, countryItem, sizeItem) => {
 
 const getArcsImgs = (data, step) => {
 
-    let path = '/src/assets/arcs/';
+    let path = '/ByteCloudTestTask2/arcs/';
 
     const countries = data.countries;
     const storage = data.storage;
