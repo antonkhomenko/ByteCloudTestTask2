@@ -94,7 +94,8 @@ const WorldMap = () => {
     const [finishedDevices, setFinishedDevices] = useState(0);
 
     useEffect(() => {
-        if(finishedDevices / 3 === countries.length) {
+
+        if(finishedDevices === countries.length) {
             setStep(8);
         }
     }, [finishedDevices, countries.length]);
@@ -110,7 +111,7 @@ const WorldMap = () => {
                     return (
                         <LocationBlock key={item.name} {...item}>
                                 {item.showDevices
-                                    ? <Devices location={item.name} locationId={index} arcsData={arcsData} counter={setFinishedDevices}/>
+                                    ? <Devices location={item.name} locationId={index} arcsData={arcsData} setCounter={setFinishedDevices}/>
                                     : <UserList onClick={(event) => handleClick(index, event)}/>}
                         </LocationBlock>
                     )

@@ -32,7 +32,7 @@ const LatencyWrapper = styled.div`
 
 
 
-const Devices = ({locationId, location, arcsData, counter}) => {
+const Devices = ({locationId, location, arcsData, setCounter}) => {
 
     const countries = useContext(CountriesContext);
     const devicesAmount = countries[locationId].selectedUsers;
@@ -47,6 +47,15 @@ const Devices = ({locationId, location, arcsData, counter}) => {
     const [latency, setLatency] = useState(0);
 
     const [fastDownload, setFastDownload] = useState(true);
+
+    const [deviceCounter, setDeviceCounter] = useState(0);
+
+    useEffect(() => {
+        if(deviceCounter === devicesAmount) {
+            setCounter(prev => prev + 1);
+        }
+    }, [deviceCounter]);
+
 
     useEffect(() => {
         if(step >= 7) {
@@ -76,7 +85,7 @@ const Devices = ({locationId, location, arcsData, counter}) => {
                           locationId={locationId} deviceAmount={devicesAmount}
                           key={item.name} latency={latency} fastDownload={fastDownload}
                           intervalEnd={intervalEnd} setIntervalEnd={setIntervalEnd}
-                          counter={counter}
+                          setDeviceCounter={setDeviceCounter}
                       />
                   )
               })

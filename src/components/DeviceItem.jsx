@@ -66,7 +66,7 @@ const DeviceItem = (props) => {
         if(loaderWidth >= 100) {
             clearInterval(timer);
             props.setIntervalEnd(true);
-            props.counter(prev => prev + 1);
+            props.setDeviceCounter(prev => prev + 1);
         }
 
     }
@@ -89,7 +89,7 @@ const DeviceItem = (props) => {
     return (
        <DeviceWrapper {...deviceWrapperStyle}>
            {
-               (step >= 7 && props.latency !== 0)
+               (step === 7 && props.latency !== 0)
                && (
                    <DeviceMask {...props.mask}>
                         <DeviceLoader style={{width: `${loaderWidth}%`}}/>

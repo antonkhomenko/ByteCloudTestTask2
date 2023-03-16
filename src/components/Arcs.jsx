@@ -79,12 +79,11 @@ const getArcsImgs = (data, step) => {
         });
     }
     if(step === 8){
-        console.log('for all')
+
+        console.log(step)
 
         const objectStorage =  storage.find(item => item.objectStorage === true);
 
-        console.log(objectStorage);
-        console.log(countries)
 
         for (let i = 0; i < countries.length; i++) {
             for(let s = 1; s <= countries[i].selectedUsers; s++) {
@@ -106,14 +105,8 @@ const getArcsImgs = (data, step) => {
 const Arcs = ({data}) => {
 
     const step = useContext(NavigationContext);
-    let arcsImgs;
+    const arcsImgs = getArcsImgs(data, step);
 
-    if(step === 7) {
-        arcsImgs = getArcsImgs(data, step);
-    }
-    if(step === 8) {
-        arcsImgs = getArcsImgs(data, step);
-    }
 
 
 
