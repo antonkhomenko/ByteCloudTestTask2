@@ -2,6 +2,8 @@ import styled from "styled-components";
 import ArcItem from "./ArcItem.jsx";
 import arc1 from '/src/assets/arcs/arc_east-usa_asia_large.png';
 import {getClosestServer} from "../helpers/getClosestServer.js";
+import {useContext} from "react";
+import {NavigationContext} from "../contexts/NavigationContext.jsx";
 
 
 const getArcImgName = (storageItem, countryItem, sizeItem) => {
@@ -57,35 +59,33 @@ const getArcImgName = (storageItem, countryItem, sizeItem) => {
 }
 
 
-const getArcsImgs = (data) => {
+const getArcsImgs = (data, step) => {
 
     let path = '/src/assets/arcs/';
 
     const countries = data.countries;
     const storage = data.storage;
 
-    const objectStorage = storage.find(item => item.objectStorage === true);
-
-
 
     let result = [];
 
-    //Object Storage Loop
+    if(step === 7) {
+        const closestServers = getClosestServer(storage, countries);
 
-    // for (let i = 0; i < countries.length; i++) {
-    //     for(let s = 1; s <= countries[i].selectedUsers; s++) {
-    //         result.push(path + getArcImgName(objectStorage, countries[i], s));
-    //     }
-    // }
-
-    const closestServers = getClosestServer(storage, countries);
-
-
-    closestServers.forEach(item => {
-       for(let i = 1; i <= item[0].selectedUsers; i++) {
-           result.push(path + getArcImgName(item[1], item[0], i));
-       }
-    });
+        closestServers.forEach(item => {
+            for(let i = 1; i <= item[0].selectedUsers; i++) {
+                result.push(path + getArcImgName(item[1], item[0], i));
+            }
+        });
+    } else {
+        result = [];
+        const objectStorage = countries.find(item => item.objectStorage === true);
+        for (let i = 0; i < countries.length; i++) {
+            for(let s = 1; s <= countries[i].selectedUsers; s++) {
+                result.push(path + getArcImgName(objectStorage, countries[i], s));
+            }
+        }
+    }
 
 
 
@@ -99,7 +99,9 @@ const getArcsImgs = (data) => {
 
 const Arcs = ({data}) => {
 
-   const arcsImgs = getArcsImgs(data);
+    const step = useContext(NavigationContext);
+
+   const arcsImgs = getArcsImgs(data, step);
 
 
 

@@ -61,14 +61,7 @@ const getNavigationTitle = (step) => {
                 active: true,
             }
         }
-        case 5: {
-            return {
-                title: '',
-                btn: '',
-                active: false,
-            }
-        }
-        case 6: {
+        default: {
             return {
                 title: '',
                 btn: '',
@@ -76,13 +69,6 @@ const getNavigationTitle = (step) => {
             }
         }
 
-        case 7: {
-            return {
-                title: '',
-                btn: '',
-                active: false,
-            }
-        }
     }
 }
 

@@ -1,9 +1,11 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect} from 'react';
 import styled from "styled-components";
 import {CountriesContext} from "../contexts/CountriesContext.jsx";
 import DeviceItem from "./DeviceItem.jsx";
 import {getDevicesStyle} from "../helpers/getDevicesStyle.js";
 import {getDeviceList} from "../helpers/getDeviceList.js";
+import {NavigationContext} from "../contexts/NavigationContext.jsx";
+import {getClosestServer} from "../helpers/getClosestServer.js";
 
 
 const Wrapper = styled.div`
@@ -20,16 +22,26 @@ const Wrapper = styled.div`
 
 
 
-const Devices = ({locationId, location}) => {
+const Devices = ({locationId, location, arcsData}) => {
 
     const countries = useContext(CountriesContext);
     const devicesAmount = countries[locationId].selectedUsers;
+    const step = useContext(NavigationContext);
 
     const deviceList = getDeviceList(location, devicesAmount);
 
 
     const deviceWrapper = getDevicesStyle(location);
 
+    useEffect(() => {
+        if(step >= 7) {
+            const {countries, storage} = arcsData;
+            const dataNames = new Map();
+            getClosestServer(storage, countries).forEach(item => {
+                dataNames.set(item[0].name, item[1].name);
+            });
+        }
+    }, [step]);
 
 
 
@@ -37,7 +49,13 @@ const Devices = ({locationId, location}) => {
         <Wrapper {...deviceWrapper}>
             {
               deviceList.map(item => {
-                  return <DeviceItem {...item}  location={location} wrapper={deviceWrapper} locationId={locationId} deviceAmount={devicesAmount} key={item.name}/>
+                  return (
+                      <DeviceItem
+                          {...item}  location={location} wrapper={deviceWrapper}
+                          locationId={locationId} deviceAmount={devicesAmount}
+                          key={item.name} arcsData={arcsData}
+                      />
+                  )
               })
             }
         </Wrapper>

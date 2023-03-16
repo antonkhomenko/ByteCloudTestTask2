@@ -1,6 +1,8 @@
-import React from 'react';
+import React, {useContext, useEffect} from 'react';
 import styled from "styled-components";
 import {getDeviceWrapperStyle} from "../helpers/getDeviceWrapperStyle.js";
+import {NavigationContext} from "../contexts/NavigationContext.jsx";
+import {getClosestServer} from "../helpers/getClosestServer.js";
 
 const DeviceImg = styled.img`
     max-width: 35px;
@@ -39,11 +41,29 @@ const DeviceItem = (props) => {
 
     const deviceWrapperStyle = getDeviceWrapperStyle(props.location, props.name, props.deviceAmount);
 
+    const step = useContext(NavigationContext);
+
+    // useEffect(() => {
+    //     if(step >= 7) {
+    //         const {countries, storage} = props.arcsData;
+    //         const dataNames = new Map();
+    //         getClosestServer(storage, countries).forEach(item => {
+    //             dataNames.set(item[0].name, item[1].name);
+    //         });
+    //     }
+    // }, [step]);
 
 
     return (
        <DeviceWrapper {...deviceWrapperStyle}>
-           <DeviceMask {...props.mask}/>
+           {
+               step >= 7
+               && (
+                   <DeviceMask {...props.mask}>
+
+                   </DeviceMask>
+               )
+           }
            <DeviceImg src={props.src} alt={`${props.name}-img`}/>
        </DeviceWrapper>
     );

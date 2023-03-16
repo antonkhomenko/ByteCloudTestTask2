@@ -101,7 +101,9 @@ const WorldMap = () => {
                 countries.map((item, index) => {
                     return (
                         <LocationBlock key={item.name} {...item}>
-                                {item.showDevices ? <Devices location={item.name} locationId={index}/> : <UserList onClick={(event) => handleClick(index, event)}/>}
+                                {item.showDevices
+                                    ? <Devices location={item.name} locationId={index} arcsData={arcsData}/>
+                                    : <UserList onClick={(event) => handleClick(index, event)}/>}
                         </LocationBlock>
                     )
                 })
