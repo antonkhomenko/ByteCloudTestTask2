@@ -53,7 +53,6 @@ const DeviceItem = (props) => {
 
     useEffect(() => {
         if(step === 8) {
-            props.setIntervalEnd(false);
             setLoaderWidth(0);
         }
     }, [step])

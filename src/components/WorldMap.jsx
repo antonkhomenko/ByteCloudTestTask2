@@ -92,7 +92,7 @@ const WorldMap = () => {
    }, [step])
 
     const [finishedDevices, setFinishedDevices] = useState(0);
-    const [intervalEnd, setIntervalEnd] = useState(false);
+
 
     useEffect(() => {
 
@@ -115,7 +115,7 @@ const WorldMap = () => {
                                     ? <Devices
                                         location={item.name} locationId={index}
                                         arcsData={arcsData} setCounter={setFinishedDevices}
-                                        intervalEnd={intervalEnd} setIntervalEnd={setIntervalEnd}/>
+                                        />
                                     : <UserList onClick={(event) => handleClick(index, event)}/>}
                         </LocationBlock>
                     )

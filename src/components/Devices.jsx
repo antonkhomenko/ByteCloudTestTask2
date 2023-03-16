@@ -32,7 +32,7 @@ const LatencyWrapper = styled.div`
 
 
 
-const Devices = ({locationId, location, arcsData, setCounter, intervalEnd, setIntervalEnd}) => {
+const Devices = ({locationId, location, arcsData, setCounter}) => {
 
     const countries = useContext(CountriesContext);
     const devicesAmount = countries[locationId].selectedUsers;
@@ -40,6 +40,7 @@ const Devices = ({locationId, location, arcsData, setCounter, intervalEnd, setIn
 
     const deviceList = getDeviceList(location, devicesAmount);
 
+    const [intervalEnd, setIntervalEnd] = useState(false);
 
 
     const deviceWrapper = getDevicesStyle(location);
@@ -69,8 +70,10 @@ const Devices = ({locationId, location, arcsData, setCounter, intervalEnd, setIn
             setFastDownload(calculateDownload(location, dataNames.get(location)));
         }
         if(step === 8) {
-            setLatency(getLatency(location, arcsData.storage.find(item => item.objectStorage === true).name));
-            console.log(latency);
+            setIntervalEnd(false);
+            const objectStorage = arcsData.storage.find(item => item.objectStorage === true).name;
+            setLatency(getLatency(location, objectStorage));
+            setFastDownload(calculateDownload(location, objectStorage));
         }
     }, [step]);
 
@@ -79,7 +82,7 @@ const Devices = ({locationId, location, arcsData, setCounter, intervalEnd, setIn
         else return country.includes(storage);
     }
 
-
+    console.log(intervalEnd);
 
     return (
         <Wrapper {...deviceWrapper}>
