@@ -59,6 +59,8 @@ const Devices = ({locationId, location, arcsData, setCounter}) => {
 
 
 
+
+
     useEffect(() => {
         if(step === 7) {
             const {countries, storage} = arcsData;
@@ -74,6 +76,8 @@ const Devices = ({locationId, location, arcsData, setCounter}) => {
             const objectStorage = arcsData.storage.find(item => item.objectStorage === true).name;
             setLatency(getLatency(location, objectStorage));
             setFastDownload(calculateDownload(location, objectStorage));
+            setDeviceCounter(0);
+            // console.log('work time')
         }
     }, [step]);
 
@@ -82,7 +86,6 @@ const Devices = ({locationId, location, arcsData, setCounter}) => {
         else return country.includes(storage);
     }
 
-    console.log(intervalEnd);
 
     return (
         <Wrapper {...deviceWrapper}>

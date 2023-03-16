@@ -54,6 +54,7 @@ const DeviceItem = (props) => {
     useEffect(() => {
         if(step === 8) {
             setLoaderWidth(0);
+            props.setDeviceCounter(0);
         }
     }, [step])
 

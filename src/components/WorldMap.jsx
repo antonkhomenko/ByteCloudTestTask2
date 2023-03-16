@@ -93,13 +93,27 @@ const WorldMap = () => {
 
     const [finishedDevices, setFinishedDevices] = useState(0);
 
+    // useEffect(() => {
+    //
+    //     if(step === 8) {
+    //         setFinishedDevices(0);
+    //
+    //     }
+    //
+    // }, [step, finishedDevices]);
+
 
     useEffect(() => {
 
         if(finishedDevices === countries.length && step === 7) {
             setStep(8);
+            setFinishedDevices(0);
+        }
+        if(finishedDevices === countries.length && step === 8) {
+            setStep(9);
         }
     }, [finishedDevices, countries.length, step]);
+
 
 
     return (
