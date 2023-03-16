@@ -1,4 +1,4 @@
-import React, {useContext, useEffect} from 'react';
+import React, {useContext, useEffect, useRef, useState} from 'react';
 import styled from "styled-components";
 import {getDeviceWrapperStyle} from "../helpers/getDeviceWrapperStyle.js";
 import {NavigationContext} from "../contexts/NavigationContext.jsx";
@@ -34,6 +34,12 @@ const DeviceMask = styled.div`
   //max-width: 40px;
 `;
 
+const DeviceLoader = styled.div`
+  height: 100%;
+  background-color: #0303ab;
+`;
+
+
 
 
 
@@ -43,24 +49,48 @@ const DeviceItem = (props) => {
 
     const step = useContext(NavigationContext);
 
-    // useEffect(() => {
-    //     if(step >= 7) {
-    //         const {countries, storage} = props.arcsData;
-    //         const dataNames = new Map();
-    //         getClosestServer(storage, countries).forEach(item => {
-    //             dataNames.set(item[0].name, item[1].name);
-    //         });
-    //     }
-    // }, [step]);
+    let [loaderWidth, setLoaderWidth] = useState(() => 0);
+
+
+
+    let timer;
+    const startInterval = (downloadTime) => {
+
+        let timeout = props.fastDownload ? 1 : 10;
+
+        timer = !timer && setInterval(() => {
+            setLoaderWidth(prev => prev + (100 / downloadTime));
+        }, timeout);
+
+
+        if(loaderWidth >= 100) {
+            clearInterval(timer);
+        }
+
+    }
+
+    useEffect(() => {
+
+        if(step >= 7) {
+            if(props.latency !== 0) {
+                const downloadTime = props.latency * 3 - 5;
+                startInterval(downloadTime);
+            }
+        }
+
+
+        return () => clearInterval(timer);
+
+    }, [step, props.latency, loaderWidth]);
 
 
     return (
        <DeviceWrapper {...deviceWrapperStyle}>
            {
-               step >= 7
+               (step >= 7 && props.latency !== 0)
                && (
                    <DeviceMask {...props.mask}>
-
+                        <DeviceLoader style={{width: `${loaderWidth}%`}}/>
                    </DeviceMask>
                )
            }

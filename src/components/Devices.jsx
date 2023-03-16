@@ -1,4 +1,4 @@
-import React, {useContext, useEffect} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import styled from "styled-components";
 import {CountriesContext} from "../contexts/CountriesContext.jsx";
 import DeviceItem from "./DeviceItem.jsx";
@@ -6,6 +6,7 @@ import {getDevicesStyle} from "../helpers/getDevicesStyle.js";
 import {getDeviceList} from "../helpers/getDeviceList.js";
 import {NavigationContext} from "../contexts/NavigationContext.jsx";
 import {getClosestServer} from "../helpers/getClosestServer.js";
+import {getLatency} from "../helpers/getLatency.js";
 
 
 const Wrapper = styled.div`
@@ -19,6 +20,15 @@ const Wrapper = styled.div`
 `;
 
 
+const LatencyWrapper = styled.div`
+  padding: 5px 10px;
+  position: absolute;
+  background-color: black;
+  color: white;
+  bottom: -34%;
+  left: 36px;
+  font-size: 0.8rem;
+`;
 
 
 
@@ -33,6 +43,10 @@ const Devices = ({locationId, location, arcsData}) => {
 
     const deviceWrapper = getDevicesStyle(location);
 
+    const [latency, setLatency] = useState(0);
+
+    const [fastDownload, setFastDownload] = useState(true);
+
     useEffect(() => {
         if(step >= 7) {
             const {countries, storage} = arcsData;
@@ -40,10 +54,16 @@ const Devices = ({locationId, location, arcsData}) => {
             getClosestServer(storage, countries).forEach(item => {
                 dataNames.set(item[0].name, item[1].name);
             });
+            setLatency(getLatency(location, dataNames.get(location)));
+            setFastDownload(calculateDownload(location, dataNames.get(location)));
+
         }
     }, [step]);
 
-
+    const calculateDownload = (country, storage) => {
+        if(storage === 'NorthAmerica1' || storage === 'NorthAmerica2' && country === 'NorthAmerica') return true;
+        else return country.includes(storage);
+    }
 
     return (
         <Wrapper {...deviceWrapper}>
@@ -53,10 +73,13 @@ const Devices = ({locationId, location, arcsData}) => {
                       <DeviceItem
                           {...item}  location={location} wrapper={deviceWrapper}
                           locationId={locationId} deviceAmount={devicesAmount}
-                          key={item.name} arcsData={arcsData}
+                          key={item.name} latency={latency} fastDownload={fastDownload}
                       />
                   )
               })
+            }
+            {
+                step >= 7 && <LatencyWrapper>Latency {latency}</LatencyWrapper>
             }
         </Wrapper>
     );
